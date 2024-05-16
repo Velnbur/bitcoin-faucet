@@ -1,0 +1,67 @@
+name: Release CI
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build-binaries:
+    name: Build release binaries ${{ matrix.os }}
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+          - os: macos-latest
+
+    timeout-minutes: 15
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/nix-setup
+
+      - name: Build binaries
+        run: nix build .#
+
+      - name: Hash and archive binaries
+        run: |
+          mkdir -p ./release
+          sha256sum ./result/bin/bitcoin-faucet > ./release/bitcoin-faucet-${{ github.ref_name }}-${{ matrix.os }}.sha256
+          tar -czf ./release/bitcoin-faucet-${{ github.ref_name }}-${{ matrix.os }}.tar.gz ./result/bin/bitcoin-faucet
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: bitcoin-faucet-${{ github.ref_name }}-${{ matrix.os }}
+          path: ./release/
+          if-no-files-found: error
+
+  build-docker-image:
+    name: Build release Docker image
+    runs-on: ubuntu-22.04
+    permissions:
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/nix-setup
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run `nix build`
+        run: nix build .#docker
+      - name: Load Docker image
+        run: docker load < result
+      - name: Tag Docker image
+        run: |
+          docker tag ghcr.io/velnbur/bitcoin-faucet:latest ghcr.io/velnbur/bitcoin-faucet:${{ github.ref_name }}
+      - name: Push Docker image
+        run: |
+          docker push ghcr.io/velnbur/bitcoin-faucet --all-tags

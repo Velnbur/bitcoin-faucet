@@ -1,0 +1,10 @@
+[licenses]
+allow = [
+      "MIT",
+      "Apache-2.0",
+      "CC0-1.0",
+      "MITNFA"
+]
+exceptions = [
+    { allow = ["Unicode-DFS-2016"], name = "unicode-ident" },
+]
