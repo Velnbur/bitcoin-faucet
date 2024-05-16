@@ -1,0 +1,3 @@
+bitcoin_url = "bitcoind:18443"
+bitcoin_username = "admin1"
+bitcoin_password = "123"
