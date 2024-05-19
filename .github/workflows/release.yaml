@@ -30,7 +30,7 @@ jobs:
       - name: Hash and archive binaries
         run: |
           mkdir -p ./release
-          sha256sum ./result/bin/bitcoin-faucet > ./release/bitcoin-faucet-${{ github.ref_name }}-${{ matrix.os }.sha256
+          sha256sum ./result/bin/bitcoin-faucet > ./release/bitcoin-faucet-${{ github.ref_name }}-${{ matrix.os }}.sha256
           tar -czf ./release/bitcoin-faucet-${{ github.ref_name }}-${{ matrix.os }}.tar.gz ./result/bin/bitcoin-faucet
 
       - uses: actions/upload-artifact@v2
