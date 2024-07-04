@@ -20,13 +20,13 @@ The result is transaction id of the funding transaction.
 
 ### Examples
 
-Send 1 BTC to `bcrt1qkqnzdx9krpzuqlultkcdet3v5um75exnzfm9kt`:
+Send 1 BTC to `bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh`:
 
 
 ```sh
 curl -X POST \
      -H 'Content-Type: application/json' \
-     -d '{"jsonrpc":"2.0","id":"id","method":"fund","params":[["bcrt1qkqnzdx9krpzuqlultkcdet3v5um75exnzfm9kt", 100000000]]}' \
+     -d '{"jsonrpc":"2.0","id":"id","method":"fund","params":[["bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh", 100000000]]}' \
      http://127.0.0.1:18777
 ```
 
@@ -40,21 +40,21 @@ Response:
 }
 ```
 
-Send 1 BTC to [`bcrt1qkqnzdx9krpzuqlultkcdet3v5um75exnzfm9kt`, `bcrt1qkqnzdx9krpzuqlultkcdet3v5um75exnzfm9kt`]:
+Send 1 BTC to [`bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh`, `bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh`]:
 
 ```sh
 curl -X POST \
      -H 'Content-Type: application/json' \
-     -d '{"jsonrpc":"2.0","id":"id","method":"fund","params":[[["bcrt1qkqnzdx9krpzuqlultkcdet3v5um75exnzfm9kt", "bcrt1qkqnzdx9krpzuqlultkcdet3v5um75exnzfm9kt"], 100000000]]}' \
+     -d '{"jsonrpc":"2.0","id":"id","method":"fund","params":[[["bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh", "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"], 100000000]]}' \
      http://127.0.0.1:18777
 ```
 
-Send 1 to `bcrt1qkqnzdx9krpzuqlultkcdet3v5um75exnzfm9kt` and 2 to `bcrt1qkqnzdx9krpzuqlultkcdet3v5um75exnzfm9kt`:
+Send 1 to `bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh` and 2 to `bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh`:
 
 ```sh
 curl -X POST \
      -H 'Content-Type: application/json' \
-     -d '{"jsonrpc":"2.0","id":"id","method":"fund","params":[[["bcrt1qkqnzdx9krpzuqlultkcdet3v5um75exnzfm9kt", 100000000], ["bcrt1qkqnzdx9krpzuqlultkcdet3v5um75exnzfm9kt", 200000000]]]}' \
+     -d '{"jsonrpc":"2.0","id":"id","method":"fund","params":[[["bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh", 100000000], ["bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh", 200000000]]]}' \
      http://127.0.0.1:18777
 ```
 

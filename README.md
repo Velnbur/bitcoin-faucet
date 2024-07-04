@@ -19,7 +19,7 @@ And send bitcoins to your node using local `curl`:
 ```sh
 curl -X POST \
      -H 'Content-Type: application/json' \
-     -d '{"jsonrpc":"2.0","id":"id","method":"fund","params":[["bcrt1qkqnzdx9krpzuqlultkcdet3v5um75exnzfm9kt", 100000000]]}' \
+     -d '{"jsonrpc":"2.0","id":"id","method":"fund","params":[["bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh", 100000000]]}' \
      http://127.0.0.1:18777
 ```
 
@@ -29,7 +29,7 @@ Or one inside the container:
 ```sh
 docker compose exec faucet curl -X POST \
      -H 'Content-Type: application/json' \
-     -d '{"jsonrpc":"2.0","id":"id","method":"fund","params":[["bcrt1phhfvq20ysdh6ht8fhtp7e8xfemva23lr703mtyrnuv7fkdggayvsz8x8gd", 100000]]}' \
+     -d '{"jsonrpc":"2.0","id":"id","method":"fund","params":[["bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh", 100000]]}' \
      http://127.0.0.1:18777
 ```
 
