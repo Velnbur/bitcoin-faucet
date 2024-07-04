@@ -60,6 +60,8 @@ jobs:
       - name: Load Docker image
         run: docker load < result
       - name: Tag Docker image
-        run: docker tag ghcr.io/velnbur/bitcoin-faucet:latest ghcr.io/velnbur/bitcoin-faucet:${{ github.ref_name }}
+        run: |
+          docker tag ghcr.io/velnbur/bitcoin-faucet:latest ghcr.io/velnbur/bitcoin-faucet:${{ github.ref_name }}
       - name: Push Docker image
-        run: docker push ghcr.io/velnbur/bitcoin-faucet:${{ github.ref_name }}
+        run: |
+          docker push ghcr.io/velnbur/bitcoin-faucet --all-tags
