@@ -21,3 +21,6 @@ tower = { version = "0.4.13", default-features = false }
 tracing = { version = "0.1.40", default-features = false }
 tracing-subscriber = { version = "0.3.18", default-features = false, features = ["std", "fmt", "env-filter"] }
 url = { version = "2.5.0", default-features = false }
+
+[dev-dependencies]
+serde_json = "1.0.120"
